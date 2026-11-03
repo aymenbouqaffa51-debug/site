@@ -314,7 +314,15 @@ export default {
         return json(env, request, 404, { error: 'no_avatar' });
       }
       let up;
-      try { up = await timedFetch(u.href, { headers: { Accept: 'image/*' } }); }
+      /* 42's CDN answers 403 to requests that look like hotlinking (no Referer,
+         no browser UA). Ask the way 42's own pages do: from profile.intra.42.fr. */
+      try {
+        up = await timedFetch(u.href, { headers: {
+          'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+          'Referer': 'https://profile.intra.42.fr/',
+          'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36'
+        } });
+      }
       catch (e) { console.log('avatar fetch failed', String(e)); return json(env, request, 502, { error: 'avatar_unreachable' }); }
       const ct = (up.headers.get('Content-Type') || '').split(';')[0].trim().toLowerCase();
       const len = parseInt(up.headers.get('Content-Length') || '0', 10);
