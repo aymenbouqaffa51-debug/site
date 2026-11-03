@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<!-- Security: GitHub Pages cannot send response headers, so the policy that
+     actually reaches production is this meta CSP. site/_headers carries the
+     same directives plus the header-only ones for Netlify / Cloudflare Pages.
+     Keep both in sync (build/shell.py owns the string). -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.intra.42.fr https://intra.42.fr https://*.intra.42.fr; font-src 'self'; connect-src 'self' https://api.styxsec.tech http://localhost:* http://127.0.0.1:*; frame-src https://www.openstreetmap.org; form-action 'self'; base-uri 'self'; object-src 'none'; manifest-src 'self'">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta name="color-scheme" content="dark">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0A0C0E">
+<title>Create a Member Account — StyxSec</title>
+<meta name="description" content="Your 42 account is your StyxSec member account — no separate signup and no new password.">
+<link rel="canonical" href="https://styxsec.tech/signup.html">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="StyxSec">
+<meta property="og:title" content="Create a Member Account — StyxSec">
+<meta property="og:description" content="Your 42 account is your StyxSec member account — no separate signup and no new password.">
+<meta property="og:url" content="https://styxsec.tech/signup.html">
+<meta property="og:image" content="https://styxsec.tech/assets/img/og-cover.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_US">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Create a Member Account — StyxSec">
+<meta name="twitter:description" content="Your 42 account is your StyxSec member account — no separate signup and no new password.">
+<meta name="twitter:image" content="https://styxsec.tech/assets/img/og-cover.png">
+
+<link rel="icon" href="assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="assets/img/favicon-16.png" sizes="16x16" type="image/png">
+<link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+<link rel="manifest" href="manifest.webmanifest">
+
+<link rel="preload" href="assets/fonts/space-grotesk-normal-300_700-latin.woff2?v=c7d6cc57" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/jetbrains-mono-normal-300_700-latin.woff2?v=c7d6cc57" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/fonts.css?v=c7d6cc57">
+<link rel="stylesheet" href="assets/css/site.css?v=c7d6cc57">
+<link rel="stylesheet" href="assets/css/auth42.css?v=c7d6cc57">
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"StyxSec","alternateName":"Styx Security Club","url":"https://styxsec.tech","logo":"https://styxsec.tech/assets/img/icon-512.png","email":"contact@styxsec.ma","foundingDate":"2026","description":"Cybersecurity club of 1337 Rabat, part of UM6P Rabat.","parentOrganization":{"@type":"CollegeOrUniversity","name":"Mohammed VI Polytechnic University (UM6P)"},"address":{"@type":"PostalAddress","streetAddress":"1337 Rabat, UM6P Rabat Campus","addressLocality":"Rabat","postalCode":"11100","addressCountry":"MA"},"sameAs":["https://github.com/styxsec","https://www.linkedin.com/company/styxsec"]}
+</script>
+</head>
+<body id="top" class="" data-handles='{"aybouqaf":"0xch4r0"}'>
+<a class="skip" href="#main">Skip to content</a>
+<div class="grid-bg" aria-hidden="true"></div>
+<canvas id="field" aria-hidden="true"></canvas>
+<div class="noise" aria-hidden="true"></div>
+<div class="strip"><div class="wrap strip__in">
+  <span><span class="strip__dot"></span>Cybersecurity club · founded 2026</span>
+  <div class="strip__r">
+    <span>1337 Rabat — UM6P Rabat</span>
+    <a href="mailto:contact@styxsec.ma">contact@styxsec.ma</a>
+  </div>
+</div></div><header class="site-head">
+  <div class="nav-progress" aria-hidden="true"><i data-nav-progress></i></div>
+  <div class="wrap nav">
+    <a class="brand" href="index.html" aria-label="StyxSec — home">
+      <span class="brand__mark"><img src="assets/img/mark-128.png" alt="" width="40" height="40" decoding="async"></span>
+      <span class="brand__txt">
+        <span class="brand__name">STYXSEC</span>
+        <span class="brand__sub">CYBERSECURITY CLUB</span>
+      </span>
+    </a>
+    <nav class="nav__links" aria-label="Primary"><a class="nav__link" href="index.html">Home</a><a class="nav__link" href="about.html">About</a><a class="nav__link" href="events.html">Events</a><a class="nav__link" href="ctf.html">CTF</a><a class="nav__link" href="team.html">Team</a><a class="nav__link" href="writeups.html">Writeups</a><a class="nav__link" href="contact.html">Contact</a></nav>
+    <div class="nav__right">
+      <span data-acct-slot></span>
+      <a class="btn btn--ghost btn--sm nav__cta" href="login.html" data-login-slot><span>Intranet</span></a>
+      <a class="btn btn--sm nav__cta" href="join.html"><span>Join <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+      <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="drawer">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<div class="drawer" id="drawer" aria-hidden="true">
+  <nav aria-label="Mobile"><a class="drawer__link" href="index.html"><i>01</i>Home</a><a class="drawer__link" href="about.html"><i>02</i>About</a><a class="drawer__link" href="events.html"><i>03</i>Events</a><a class="drawer__link" href="ctf.html"><i>04</i>CTF</a><a class="drawer__link" href="team.html"><i>05</i>Team</a><a class="drawer__link" href="writeups.html"><i>06</i>Writeups</a><a class="drawer__link" href="contact.html"><i>07</i>Contact</a></nav>
+  <div class="drawer__foot">
+    <a class="btn" href="join.html"><span>Join the club <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+    <a class="link-arrow" href="login.html">Member intranet <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M4 12L12 4M12 4H6M12 4v6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></a>
+  </div>
+</div>
+<main id="main" class="page">
+
+<section class="auth">
+  <div class="auth__art" aria-hidden="true">
+    <div class="auth__art-in">
+      <div class="mono-l" style="color:var(--gold-lite)">New member · Registration</div>
+      <h2 class="auth__headline">Every crew starts<br>with one name on the list.</h2>
+      <div class="auth__emblem">
+        <span class="emblem__halo"></span>
+        <picture><source srcset="assets/img/mark-512.webp" type="image/webp"><img src="assets/img/mark-512.png" alt="" width="512" height="512" loading="lazy" decoding="async"></picture>
+      </div>
+      <blockquote class="auth__quote">“Nobody arrives knowing how. That is the entire point.”<span>— onboarding, week one</span></blockquote>
+      <div class="auth__stats">
+        <div><b>2026</b><span>founded</span></div>
+        <div><b>6</b><span>board</span></div>
+        <div><b>5</b><span>cells</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="auth__form">
+    <div class="auth__form-in">
+      <nav class="breadcrumb" aria-label="Breadcrumb"><a href="index.html">Home</a><i>/</i><span>Intranet</span></nav>
+      <h1 class="auth__title">Claim your <span class="serif" style="font-style:italic;color:var(--gold-lite)">seat.</span></h1>
+      <p class="body auth__sub">No form, no password. Your 42 account creates your club account the first time you sign in.</p>
+      
+<div class="mt-4">
+  <a class="btn btn--block btn--42" href="login.html" data-intra-login data-next="dashboard.html">
+      <span class="btn__42" aria-hidden="true">42</span>
+      <span>Continue with 42</span>
+      <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </a>
+</div>
+
+<p class="auth__msg" data-auth-msg role="alert" aria-live="assertive"></p>
+
+<div class="value-list mt-4">
+  <div class="value"><div class="value__k">01</div><div><h2 class="value__h">You sign in with 42</h2><p>We never store a password. 42 authenticates you and tells us who you are.</p></div></div>
+  <div class="value"><div class="value__k">02</div><div><h2 class="value__h">We read your campus</h2><p>Your 42 profile already says 1337 Rabat — that is your eligibility check.</p></div></div>
+  <div class="value"><div class="value__k">03</div><div><h2 class="value__h">You pick a cell</h2><p>Web, Reverse, Pwn, Cloud, or Pentesting &amp; Bug Bounty. Change it any time.</p></div></div>
+</div>
+
+<div class="auth__divider"><span>already signed in</span></div>
+<a class="btn btn--ghost btn--block" href="dashboard.html"><span>Open the intranet <svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
+
+<div class="auth__hint" data-intra-setup hidden>
+  <div class="mono-l" style="margin-bottom:6px">Setup needed</div>
+  <p class="body" style="font-size:.8rem;margin:0">42 OAuth is not configured on this deployment yet. See README §3.</p>
+</div>
+
+    </div>
+  </div>
+</section>
+</main>
+<footer class="site-foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div class="foot__brand">
+        <a class="brand" href="index.html" aria-label="StyxSec — home">
+          <span class="brand__mark"><img src="assets/img/mark-128.png" alt="" width="40" height="40" loading="lazy" decoding="async"></span>
+          <span class="brand__txt">
+            <span class="brand__name">STYXSEC</span>
+            <span class="brand__sub">CYBERSECURITY CLUB</span>
+          </span>
+        </a>
+        <p>The cybersecurity club of 1337 Rabat, part of UM6P Rabat. We train, we compete, and we publish — so that the next breach in Morocco is found by us first.</p>
+        <div class="foot__social">
+          <a href="https://github.com/styxsec" aria-label="GitHub" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.65 0 0 .84-.27 2.75 1.02a9.6 9.6 0 015 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.38.2 2.4.1 2.65.64.7 1.03 1.59 1.03 2.68 0 3.85-2.34 4.7-4.57 4.94.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0012 2z"/></svg></a>
+          <a href="https://www.linkedin.com/company/styxsec" aria-label="LinkedIn" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 9h4v12H3zM9.5 9h3.8v1.7h.05c.53-.95 1.83-1.95 3.76-1.95C21.1 8.75 22 11 22 14.1V21h-4v-6.1c0-1.45-.03-3.32-2.03-3.32-2.03 0-2.34 1.58-2.34 3.21V21h-4z"/></svg></a>
+          <a href="https://x.com/styxsec" aria-label="X" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.5 3h3.2l-7 8 8.3 10h-6.5l-5-6.2-5.8 6.2H1.5l7.5-8.6L1 3h6.6l4.5 5.7L17.5 3zm-1.1 16.1h1.8L7.7 4.8H5.8l10.6 14.3z"/></svg></a>
+          <a href="https://discord.gg/styxsec" aria-label="Discord" rel="noopener noreferrer"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.3 4.4A19 19 0 0015.6 3l-.3.6a14 14 0 014.1 2.1 13.6 13.6 0 00-11 0A14 14 0 0112.5 3.6L12.2 3a19 19 0 00-4.6 1.4C4.9 8.3 4.2 12.1 4.5 15.9a19 19 0 005.7 2.9l.7-1.1c-.6-.2-1.2-.5-1.7-.8l.4-.3a13.6 13.6 0 0011.6 0l.4.3c-.5.3-1.1.6-1.7.8l.7 1.1a19 19 0 005.7-2.9c.4-4.4-.6-8.1-2.2-11.5zM9.7 13.9c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.7.8 1.6 1.8c0 1-.7 1.8-1.6 1.8zm4.6 0c-.9 0-1.6-.8-1.6-1.8s.7-1.8 1.6-1.8 1.7.8 1.6 1.8c0 1-.7 1.8-1.6 1.8z"/></svg></a>
+        </div>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__h">Club</h2>
+        <ul>
+          <li><a href="about.html">About us</a></li>
+          <li><a href="team.html">The roster</a></li>
+          <li><a href="writeups.html">Writeups</a></li>
+          <li><a href="join.html">Join</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__h">Operations</h2>
+        <ul>
+          <li><a href="events.html">Events</a></li>
+          <li><a href="ctf.html">Styx CTF</a></li>
+          <li><a href="ctf.html#scoreboard">Scoreboard</a></li>
+          <li><a href="writeups.html">Research</a></li>
+        </ul>
+      </div>
+      <div class="foot__col">
+        <h2 class="foot__h">Reach us</h2>
+        <ul>
+          <li><a href="mailto:contact@styxsec.ma">contact@styxsec.ma</a></li>
+          <li><a href="contact.html">Contact form</a></li>
+          <li><a href="contact.html#find-us">Find the lab</a></li>
+          <li><a href="login.html">Member intranet</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot__word">
+      <span>© <span data-year>2026</span> StyxSec · 1337 Rabat</span>
+      <span>Built by members, for members</span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </div>
+  <img class="foot__mark" src="assets/img/mark-512.png" alt="" aria-hidden="true" width="300" height="300" loading="lazy" decoding="async">
+</footer>
+<div class="cursor" aria-hidden="true"></div>
+<script src="assets/js/site.js?v=c7d6cc57" defer></script>
+<script src="assets/js/auth42.js?v=c7d6cc57" defer></script>
+<script src="assets/js/pages-auth.js?v=c7d6cc57" defer></script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+// Netlify redirects: clean URLs + SPA-safe 404
+// Handles /about -> /about.html without a server, and serves 404.html.
+
+/about          /about.html          200
+/events         /events.html         200
+/ctf            /ctf.html            200
+/team           /team.html           200
+/writeups       /writeups.html       200
+/contact        /contact.html        200
+/join           /join.html           200
+/login          /login.html          200
+/signup         /signup.html         200
+/dashboard      /dashboard.html      200
+
+/*  /404.html  404

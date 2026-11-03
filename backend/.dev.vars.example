@@ -1,0 +1,6 @@
+# copy to .dev.vars for `npm run dev` (never commit .dev.vars)
+INTRA42_CLIENT_ID=your_uid
+INTRA42_CLIENT_SECRET=your_secret
+SESSION_SECRET=any-long-random-string
+SITE_ORIGIN=http://localhost:8080
+ALLOWED_CAMPUS=1337 Rabat

@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Member-only area is client-side gated; nothing to index there.
+Disallow: /dashboard.html
+
+Sitemap: https://styxsec.tech/sitemap.xml

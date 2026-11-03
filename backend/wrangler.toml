@@ -1,0 +1,19 @@
+name = "styxsec-auth"
+main = "src/index.js"
+compatibility_date = "2025-01-01"
+
+# api.styxsec.tech works once styxsec.tech is an *Active* zone on your Cloudflare account.
+routes = [{ pattern = "api.styxsec.tech", custom_domain = true }]
+
+[observability]
+enabled = true
+
+[vars]
+SITE_ORIGIN = "https://styxsec.tech"
+ALLOWED_CAMPUS = "1337 Rabat"
+# CAMPUS_ID = ""
+
+# Secrets are NOT stored here:
+#   npx wrangler secret put INTRA42_CLIENT_ID
+#   npx wrangler secret put INTRA42_CLIENT_SECRET
+#   npx wrangler secret put SESSION_SECRET
