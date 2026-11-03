@@ -6,7 +6,7 @@
      actually reaches production is this meta CSP. site/_headers carries the
      same directives plus the header-only ones for Netlify / Cloudflare Pages.
      Keep both in sync (build/shell.py owns the string). -->
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://cdn.intra.42.fr https://intra.42.fr https://*.intra.42.fr; font-src 'self'; connect-src 'self' https://api.styxsec.tech http://localhost:* http://127.0.0.1:*; frame-src https://www.openstreetmap.org; form-action 'self'; base-uri 'self'; object-src 'none'; manifest-src 'self'">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://api.styxsec.tech https://cdn.intra.42.fr https://intra.42.fr https://*.intra.42.fr; font-src 'self'; connect-src 'self' https://api.styxsec.tech http://localhost:* http://127.0.0.1:*; frame-src https://www.openstreetmap.org; form-action 'self'; base-uri 'self'; object-src 'none'; manifest-src 'self'">
 <meta name="referrer" content="strict-origin-when-cross-origin">
 <meta name="color-scheme" content="dark">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">

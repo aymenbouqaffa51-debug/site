@@ -103,13 +103,18 @@
       /* Same rule as build/people.py: strip 0x, take the first two alnum chars. */
       var initials = (A.monogramFor ? A.monogramFor(handle) : String(handle).slice(0, 2).toUpperCase());
       if (ini) ini.textContent = initials;
-      var src = A.safeAvatar(p.image_large || p.image);
-      if (img && src) {
+      var sources = A.avatarSources ? A.avatarSources(p, 'large') : [];
+      if (img && sources.length) {
+        var tried = 0;
+        var nextSrc = function () {
+          if (tried < sources.length) { img.src = sources[tried++]; }
+          else { img.hidden = true; if (ini) ini.hidden = false; }
+        };
         img.addEventListener('load', function () { img.hidden = false; if (ini) ini.hidden = true; });
-        img.addEventListener('error', function () { img.hidden = true; if (ini) ini.hidden = false; });
+        img.addEventListener('error', nextSrc);
         img.referrerPolicy = 'no-referrer';
         img.alt = handle;
-        img.src = src;   // property assignment; src was host-checked by safeAvatar
+        nextSrc();   /* API proxy first, then the 42 CDN, then the monogram */
       }
 
       /* ---- level ring + progress bar (fraction of the current level) ---- */

@@ -126,6 +126,16 @@
     return p;
   }
 
+  /* Photo through the API proxy first (one host, session-checked), the 42 CDN
+     second, monogram last. Callers walk this list on <img> errors. */
+  function avatarSources(p, size) {
+    var out = [];
+    if (p && (p.image || p.image_large || p.image_small)) out.push(API_BASE + '/avatar?s=' + (size === 'small' ? 'small' : 'large'));
+    var direct = safeAvatar(size === 'small' ? (p && (p.image_small || p.image)) : (p && (p.image_large || p.image)));
+    if (direct) out.push(direct);
+    return out;
+  }
+
   function absolute(path) {
     /* API_BASE may be '' (same-origin), so build through URL to stay correct. */
     return API_BASE + path;
@@ -141,7 +151,7 @@
        identity everywhere else on the site. */
     var label = handleFor(p) || 'member';
     var initials = monogramFor(label);
-    var av = safeAvatar(p.image_small || p.image);
+    var sources = avatarSources(p, 'small');
 
     var link = document.createElement('a');
     link.className = 'acct';
@@ -150,9 +160,14 @@
 
     var avWrap = document.createElement('span');
     avWrap.className = 'acct__av';
-    if (av) {
+    if (sources.length) {
       var img = document.createElement('img');
-      img.src = av;
+      var tried = 0;
+      img.addEventListener('error', function () {
+        if (tried < sources.length) img.src = sources[tried++];
+        else { avWrap.textContent = initials; }
+      });
+      img.src = sources[tried++];
       img.alt = '';
       img.width = 26;
       img.height = 26;
@@ -234,6 +249,7 @@
   };
 
   Auth.safeAvatar = safeAvatar;
+  Auth.avatarSources = avatarSources;
   Auth.esc = esc;
   Auth.handleFor = handleFor;
   Auth.monogramFor = monogramFor;

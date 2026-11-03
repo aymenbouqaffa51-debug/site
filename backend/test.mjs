@@ -65,6 +65,20 @@ ok('/me does not grant CORS to other origins', !r.headers.get('access-control-al
 r = await call('/me', { headers: { Cookie: sessionJar, Origin: 'https://www.styxsec.tech' } });
 ok('/me allows www variant', r.headers.get('access-control-allow-origin') === 'https://www.styxsec.tech');
 
+/* avatar proxy */
+const img = (ct, status = 200) => async () => new Response(new Uint8Array([1, 2, 3]), { status, headers: { 'Content-Type': ct } });
+ok('/avatar without session -> 401', (await call('/avatar')).status === 401);
+globalThis.fetch = img('image/jpeg');
+r = await call('/avatar?s=large', { headers: { Cookie: sessionJar } });
+ok('/avatar proxies a jpeg (200, image/jpeg, private cache)', r.status === 200 && r.headers.get('content-type') === 'image/jpeg' && /private/.test(r.headers.get('cache-control')));
+globalThis.fetch = img('image/svg+xml');
+ok('/avatar refuses svg', (await call('/avatar', { headers: { Cookie: sessionJar } })).status === 404);
+globalThis.fetch = img('text/html');
+ok('/avatar refuses non-images', (await call('/avatar', { headers: { Cookie: sessionJar } })).status === 404);
+globalThis.fetch = img('image/png', 404);
+ok('/avatar upstream 404 -> 404', (await call('/avatar', { headers: { Cookie: sessionJar } })).status === 404);
+globalThis.fetch = realFetch;
+
 /* session integrity */
 ok('no cookie -> 401', (await call('/me')).status === 401);
 const tampered = sessionJar.split('; ').filter((c) => c.startsWith('styx42=')).map((c) => c.replace(/^(styx42=.)/, (m) => m.slice(0, -1) + (m.slice(-1) === 'e' ? 'f' : 'e')))[0];

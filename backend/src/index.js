@@ -10,6 +10,7 @@
                                    set signed session cookie, 302 to the site
      GET /me                    -> 200 { profile } | 401 | 501 (not configured)
      GET /logout                -> clear cookie, 302 to the site
+     GET /avatar?s=large|small  -> the member's 42 photo, proxied (needs the session)
      GET /health                -> { ok, configured }  (no secrets, for debugging)
 
    Config (wrangler.toml [vars] or dashboard; secrets via `wrangler secret put`)
@@ -294,6 +295,43 @@ export default {
       const s = await unseal(cookies[SESSION_COOKIE], sessionSecret);
       if (!s || !s.p || !s.e || s.e < Date.now()) return json(env, request, 401, { error: 'unauthenticated' });
       return json(env, request, 200, { profile: s.p });
+    }
+
+    /* ------------------------------------------------------- /avatar */
+    /* The photo URL comes from the signed session (42's own answer), never from
+       the request, so this cannot be pointed at an arbitrary host. Proxying it
+       means the browser only talks to api.styxsec.tech: no hotlink / referrer /
+       adblock / CSP-host surprises. */
+    if (path === '/avatar') {
+      const s = await unseal(cookies[SESSION_COOKIE], sessionSecret);
+      if (!s || !s.p || !s.e || s.e < Date.now()) return json(env, request, 401, { error: 'unauthenticated' });
+      const small = qs.get('s') === 'small';
+      const src = small ? (s.p.image_small || s.p.image) : (s.p.image_large || s.p.image);
+      let u;
+      try { u = new URL(src); } catch (e) { return json(env, request, 404, { error: 'no_avatar' }); }
+      const isIp = /^[0-9.]+$/.test(u.hostname) || u.hostname.indexOf(':') >= 0;
+      if (u.protocol !== 'https:' || u.username || u.password || isIp || u.hostname.indexOf('.') < 0) {
+        return json(env, request, 404, { error: 'no_avatar' });
+      }
+      let up;
+      try { up = await timedFetch(u.href, { headers: { Accept: 'image/*' } }); }
+      catch (e) { console.log('avatar fetch failed', String(e)); return json(env, request, 502, { error: 'avatar_unreachable' }); }
+      const ct = (up.headers.get('Content-Type') || '').split(';')[0].trim().toLowerCase();
+      const len = parseInt(up.headers.get('Content-Length') || '0', 10);
+      if (!up.ok || !/^image\/(jpeg|png|gif|webp|avif)$/.test(ct) || len > 3 * 1024 * 1024) {
+        console.log('avatar rejected', up.status, ct, len);
+        return json(env, request, 404, { error: 'no_avatar' });
+      }
+      return new Response(up.body, {
+        status: 200,
+        headers: {
+          'Content-Type': ct,
+          'Cache-Control': 'private, max-age=86400',
+          'X-Content-Type-Options': 'nosniff',
+          'Cross-Origin-Resource-Policy': 'same-site',
+          'Content-Security-Policy': "default-src 'none'"
+        }
+      });
     }
 
     /* -------------------------------------------------------- /logout */

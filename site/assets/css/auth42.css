@@ -45,7 +45,8 @@
 .ring__track{fill:none;stroke:rgba(238,232,222,.10);stroke-width:2.5}
 .ring__bar{fill:none;stroke:var(--gold-lite);stroke-width:2.5;stroke-linecap:round;transition:stroke-dasharray 1s cubic-bezier(.2,.7,.2,1)}
 .idcard__photo{position:absolute;inset:8px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:rgba(212,163,89,.08)}
-.idcard__photo img{width:100%;height:100%;object-fit:cover;display:block}
+.idcard__photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.idcard__photo img[hidden],.idcard__photo span[hidden]{display:none}
 .idcard__photo span{font-family:var(--font-mono);font-size:1.6rem;font-weight:600;color:var(--gold-lite)}
 .idcard__badge{position:absolute;right:-2px;bottom:2px;min-width:30px;padding:3px 7px;border-radius:99px;background:#0A0C0E;border:1px solid rgba(212,163,89,.5);color:var(--gold-lite);font-family:var(--font-mono);font-size:.64rem;font-weight:700;text-align:center;line-height:1.2}
 .lvlbar{height:6px;border-radius:99px;background:rgba(238,232,222,.08);overflow:hidden}
