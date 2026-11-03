@@ -10,6 +10,7 @@ enabled = true
 
 [vars]
 SITE_ORIGIN = "https://styxsec.tech"
+INTRA42_CLIENT_ID = "u-s4t2ud-06ce396d32beafa6c1be2f163697229792d1df93374191cb279818b11bfdef29"
 ALLOWED_CAMPUS = "1337 Rabat"
 # CAMPUS_ID = ""
 
