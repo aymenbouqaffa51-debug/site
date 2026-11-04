@@ -317,11 +317,19 @@ export default {
       /* 42's CDN answers 403 to requests that look like hotlinking (no Referer,
          no browser UA). Ask the way 42's own pages do: from profile-v3.intra.42.fr. */
       try {
-        up = await timedFetch(u.href, { headers: {
+        const avHeaders = {
           'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
+          'Accept-Language': 'en-US,en;q=0.9',
           'Referer': 'https://profile-v3.intra.42.fr/',
-          'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36'
-        } });
+          'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36',
+          'Sec-Fetch-Dest': 'image',
+          'Sec-Fetch-Mode': 'no-cors',
+          'Sec-Fetch-Site': 'same-origin'
+        };
+        if (env.INTRA42_SESSION_COOKIE) {
+          avHeaders['Cookie'] = '_intra_42_session_production=' + env.INTRA42_SESSION_COOKIE;
+        }
+        up = await timedFetch(u.href, { headers: avHeaders });
       }
       catch (e) { console.log('avatar fetch failed', String(e)); return json(env, request, 502, { error: 'avatar_unreachable' }); }
       const ct = (up.headers.get('Content-Type') || '').split(';')[0].trim().toLowerCase();
