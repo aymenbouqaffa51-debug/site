@@ -315,11 +315,11 @@ export default {
       }
       let up;
       /* 42's CDN answers 403 to requests that look like hotlinking (no Referer,
-         no browser UA). Ask the way 42's own pages do: from profile.intra.42.fr. */
+         no browser UA). Ask the way 42's own pages do: from profile-v3.intra.42.fr. */
       try {
         up = await timedFetch(u.href, { headers: {
           'Accept': 'image/avif,image/webp,image/apng,image/*,*/*;q=0.8',
-          'Referer': 'https://profile.intra.42.fr/',
+          'Referer': 'https://profile-v3.intra.42.fr/',
           'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/150.0.0.0 Safari/537.36'
         } });
       }
