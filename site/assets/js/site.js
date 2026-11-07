@@ -5,6 +5,10 @@
 (function () {
   'use strict';
 
+  /* Tell CSS the enhancement layer is live, so the pure-CSS reveal fallback
+     stands down. If this file fails to load the page still renders fully. */
+  document.documentElement.classList.add('js-enabled');
+
   var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var $ = function (s, c) { return (c || document).querySelector(s); };
   var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };

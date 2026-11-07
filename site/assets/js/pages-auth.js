@@ -136,6 +136,12 @@
       setText('[data-stat-wallet]', num(p.wallet, 0));
       setText('[data-stat-eval]', num(p.correction_point, 0));
 
+      var sess = $('[data-dash-session]');
+      if (sess && p.authenticated_at) {
+        var left = Math.ceil((new Date(p.authenticated_at).getTime() + 7 * 864e5 - Date.now()) / 864e5);
+        if (isFinite(left)) sess.textContent = 'Signed in with 42. Session ends in ' + Math.max(left, 0) + (left === 1 ? ' day.' : ' days.');
+      }
+
       var lo = $('[data-logout]');
       if (lo) lo.addEventListener('click', function () { A.logout(); });
     });
